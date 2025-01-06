@@ -123,6 +123,7 @@
     <ClCompile Include="Encryping.cpp" />
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="TestForm.cpp" />
+    <ClCompile Include="TestManager.cpp" />
     <ClCompile Include="UserForm.cpp" />
     <ClCompile Include="UserRegister.cpp" />
   </ItemGroup>
@@ -134,6 +135,7 @@
     <ClInclude Include="TestForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="TestManager.h" />
     <ClInclude Include="UserForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
