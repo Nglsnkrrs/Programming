@@ -72,6 +72,7 @@ namespace TestingProject {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(UserRegister::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
@@ -91,123 +92,158 @@ namespace TestingProject {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(30, 113);
+			this->label1->BackColor = System::Drawing::Color::Transparent;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20));
+			this->label1->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->label1->Location = System::Drawing::Point(179, 29);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(38, 13);
+			this->label1->Size = System::Drawing::Size(88, 31);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Логин";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(29, 154);
+			this->label2->BackColor = System::Drawing::Color::Transparent;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20));
+			this->label2->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->label2->Location = System::Drawing::Point(165, 106);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(45, 13);
+			this->label2->Size = System::Drawing::Size(108, 31);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Пароль";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(29, 254);
+			this->label3->BackColor = System::Drawing::Color::Transparent;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20));
+			this->label3->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->label3->Location = System::Drawing::Point(179, 265);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(34, 13);
+			this->label3->Size = System::Drawing::Size(78, 31);
 			this->label3->TabIndex = 2;
 			this->label3->Text = L"ФИО";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(30, 298);
+			this->label4->BackColor = System::Drawing::Color::Transparent;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20));
+			this->label4->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->label4->Location = System::Drawing::Point(110, 372);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(93, 13);
+			this->label4->Size = System::Drawing::Size(229, 31);
 			this->label4->TabIndex = 3;
 			this->label4->Text = L"Номер телефона";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(29, 353);
+			this->label5->BackColor = System::Drawing::Color::Transparent;
+			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20));
+			this->label5->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->label5->Location = System::Drawing::Point(165, 468);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(38, 13);
+			this->label5->Size = System::Drawing::Size(92, 31);
 			this->label5->TabIndex = 4;
 			this->label5->Text = L"Адрес";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(29, 197);
+			this->label6->BackColor = System::Drawing::Color::Transparent;
+			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20));
+			this->label6->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->label6->Location = System::Drawing::Point(156, 187);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(51, 13);
+			this->label6->Size = System::Drawing::Size(127, 31);
 			this->label6->TabIndex = 5;
 			this->label6->Text = L"Эл.почта";
 			// 
 			// Reg
 			// 
-			this->Reg->Location = System::Drawing::Point(302, 511);
+			this->Reg->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
+			this->Reg->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->Reg->Location = System::Drawing::Point(336, 575);
 			this->Reg->Name = L"Reg";
-			this->Reg->Size = System::Drawing::Size(136, 37);
+			this->Reg->Size = System::Drawing::Size(136, 38);
 			this->Reg->TabIndex = 6;
 			this->Reg->Text = L"Зарегистрироваться";
-			this->Reg->UseVisualStyleBackColor = true;
+			this->Reg->UseVisualStyleBackColor = false;
 			this->Reg->Click += gcnew System::EventHandler(this, &UserRegister::Reg_Click);
 			// 
 			// Back
 			// 
-			this->Back->Location = System::Drawing::Point(12, 518);
+			this->Back->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->Back->Location = System::Drawing::Point(12, 575);
 			this->Back->Name = L"Back";
 			this->Back->Size = System::Drawing::Size(120, 38);
 			this->Back->TabIndex = 7;
 			this->Back->Text = L"Назад";
 			this->Back->UseVisualStyleBackColor = true;
+			this->Back->Click += gcnew System::EventHandler(this, &UserRegister::Back_Click);
 			// 
 			// textBox_Login
 			// 
-			this->textBox_Login->Location = System::Drawing::Point(198, 106);
+			this->textBox_Login->BackColor = System::Drawing::SystemColors::ActiveBorder;
+			this->textBox_Login->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
+			this->textBox_Login->Location = System::Drawing::Point(116, 63);
 			this->textBox_Login->Name = L"textBox_Login";
-			this->textBox_Login->Size = System::Drawing::Size(210, 20);
+			this->textBox_Login->Size = System::Drawing::Size(210, 30);
 			this->textBox_Login->TabIndex = 8;
 			// 
 			// textBox_Password
 			// 
-			this->textBox_Password->Location = System::Drawing::Point(198, 147);
+			this->textBox_Password->BackColor = System::Drawing::SystemColors::ActiveBorder;
+			this->textBox_Password->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
+			this->textBox_Password->Location = System::Drawing::Point(116, 140);
 			this->textBox_Password->Name = L"textBox_Password";
-			this->textBox_Password->Size = System::Drawing::Size(210, 20);
+			this->textBox_Password->Size = System::Drawing::Size(210, 30);
 			this->textBox_Password->TabIndex = 9;
 			// 
 			// textBox_Email
 			// 
-			this->textBox_Email->Location = System::Drawing::Point(198, 190);
+			this->textBox_Email->BackColor = System::Drawing::SystemColors::ActiveBorder;
+			this->textBox_Email->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
+			this->textBox_Email->Location = System::Drawing::Point(116, 232);
 			this->textBox_Email->Name = L"textBox_Email";
-			this->textBox_Email->Size = System::Drawing::Size(210, 20);
+			this->textBox_Email->Size = System::Drawing::Size(210, 30);
 			this->textBox_Email->TabIndex = 10;
 			// 
 			// textBox_Name
 			// 
-			this->textBox_Name->Location = System::Drawing::Point(198, 247);
+			this->textBox_Name->BackColor = System::Drawing::SystemColors::ActiveBorder;
+			this->textBox_Name->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
+			this->textBox_Name->Location = System::Drawing::Point(116, 315);
 			this->textBox_Name->Name = L"textBox_Name";
-			this->textBox_Name->Size = System::Drawing::Size(210, 20);
+			this->textBox_Name->Size = System::Drawing::Size(210, 30);
 			this->textBox_Name->TabIndex = 11;
 			// 
 			// textBox_Phone
 			// 
-			this->textBox_Phone->Location = System::Drawing::Point(198, 291);
+			this->textBox_Phone->BackColor = System::Drawing::SystemColors::ActiveBorder;
+			this->textBox_Phone->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
+			this->textBox_Phone->Location = System::Drawing::Point(116, 423);
 			this->textBox_Phone->Name = L"textBox_Phone";
-			this->textBox_Phone->Size = System::Drawing::Size(210, 20);
+			this->textBox_Phone->Size = System::Drawing::Size(210, 30);
 			this->textBox_Phone->TabIndex = 12;
 			// 
 			// textBox_Addres
 			// 
-			this->textBox_Addres->Location = System::Drawing::Point(198, 346);
+			this->textBox_Addres->BackColor = System::Drawing::SystemColors::ActiveBorder;
+			this->textBox_Addres->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
+			this->textBox_Addres->Location = System::Drawing::Point(116, 516);
 			this->textBox_Addres->Name = L"textBox_Addres";
-			this->textBox_Addres->Size = System::Drawing::Size(210, 20);
+			this->textBox_Addres->Size = System::Drawing::Size(210, 30);
 			this->textBox_Addres->TabIndex = 13;
 			// 
 			// UserRegister
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(461, 568);
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->ClientSize = System::Drawing::Size(484, 625);
 			this->Controls->Add(this->textBox_Addres);
 			this->Controls->Add(this->textBox_Phone);
 			this->Controls->Add(this->textBox_Name);
@@ -232,5 +268,6 @@ namespace TestingProject {
 	private:
 		System::Void Reg_Click(System::Object^ sender, System::EventArgs^ e);
 		bool IsValidEmail(String^ email);
-	};
+		System::Void Back_Click(System::Object^ sender, System::EventArgs^ e);
+};
 }

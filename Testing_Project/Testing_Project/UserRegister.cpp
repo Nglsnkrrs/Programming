@@ -60,3 +60,10 @@ bool TestingProject::UserRegister::IsValidEmail(String^ email)
 
     return regex->IsMatch(email);
 }
+
+System::Void TestingProject::UserRegister::Back_Click(System::Object^ sender, System::EventArgs^ e)
+{
+    UserForm^ form5 = gcnew UserForm();
+    form5->Show();
+    this->Hide();
+}

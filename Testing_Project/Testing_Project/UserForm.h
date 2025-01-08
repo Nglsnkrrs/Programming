@@ -54,9 +54,12 @@ namespace TestingProject {
 			// 
 			// Login_User
 			// 
+			this->Login_User->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->Login_User->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
 			this->Login_User->Location = System::Drawing::Point(72, 168);
 			this->Login_User->Name = L"Login_User";
-			this->Login_User->Size = System::Drawing::Size(132, 30);
+			this->Login_User->Size = System::Drawing::Size(303, 35);
 			this->Login_User->TabIndex = 0;
 			this->Login_User->Text = L"Войти";
 			this->Login_User->UseVisualStyleBackColor = true;
@@ -64,9 +67,12 @@ namespace TestingProject {
 			// 
 			// Register_User
 			// 
+			this->Register_User->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->Register_User->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
 			this->Register_User->Location = System::Drawing::Point(72, 220);
 			this->Register_User->Name = L"Register_User";
-			this->Register_User->Size = System::Drawing::Size(132, 29);
+			this->Register_User->Size = System::Drawing::Size(303, 37);
 			this->Register_User->TabIndex = 1;
 			this->Register_User->Text = L"Зарегистрироваться";
 			this->Register_User->UseVisualStyleBackColor = true;
@@ -74,41 +80,53 @@ namespace TestingProject {
 			// 
 			// Label_Login
 			// 
+			this->Label_Login->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
 			this->Label_Login->AutoSize = true;
-			this->Label_Login->Location = System::Drawing::Point(12, 41);
+			this->Label_Login->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 25));
+			this->Label_Login->Location = System::Drawing::Point(-1, 40);
 			this->Label_Login->Name = L"Label_Login";
-			this->Label_Login->Size = System::Drawing::Size(38, 13);
+			this->Label_Login->Size = System::Drawing::Size(111, 39);
 			this->Label_Login->TabIndex = 2;
 			this->Label_Login->Text = L"Логин";
 			// 
 			// Label_Password
 			// 
+			this->Label_Password->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
 			this->Label_Password->AutoSize = true;
-			this->Label_Password->Location = System::Drawing::Point(12, 80);
+			this->Label_Password->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 25));
+			this->Label_Password->Location = System::Drawing::Point(-1, 101);
 			this->Label_Password->Name = L"Label_Password";
-			this->Label_Password->Size = System::Drawing::Size(45, 13);
+			this->Label_Password->Size = System::Drawing::Size(136, 39);
 			this->Label_Password->TabIndex = 3;
 			this->Label_Password->Text = L"Пароль";
 			// 
 			// textBox_Log
 			// 
-			this->textBox_Log->Location = System::Drawing::Point(104, 34);
+			this->textBox_Log->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->textBox_Log->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20));
+			this->textBox_Log->Location = System::Drawing::Point(157, 30);
 			this->textBox_Log->Name = L"textBox_Log";
-			this->textBox_Log->Size = System::Drawing::Size(100, 20);
+			this->textBox_Log->Size = System::Drawing::Size(271, 38);
 			this->textBox_Log->TabIndex = 4;
 			// 
 			// textBox_Pass
 			// 
-			this->textBox_Pass->Location = System::Drawing::Point(104, 73);
+			this->textBox_Pass->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->textBox_Pass->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20));
+			this->textBox_Pass->Location = System::Drawing::Point(157, 92);
 			this->textBox_Pass->Name = L"textBox_Pass";
-			this->textBox_Pass->Size = System::Drawing::Size(100, 20);
+			this->textBox_Pass->Size = System::Drawing::Size(271, 38);
 			this->textBox_Pass->TabIndex = 5;
 			// 
 			// UserForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 261);
+			this->ClientSize = System::Drawing::Size(455, 277);
 			this->Controls->Add(this->textBox_Pass);
 			this->Controls->Add(this->textBox_Log);
 			this->Controls->Add(this->Label_Password);

@@ -5,12 +5,7 @@
 
 System::Void TestingProject::TestForm::äèñêğåòíàÿÌàòåìàòèêàToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-    if (String::IsNullOrEmpty(fileLogin))
-    {
-        MessageBox::Show("Ïîæàëóéñòà, âîéäèòå â ñèñòåìó ïåğåä íà÷àëîì òåñòà.", "Îøèáêà", MessageBoxButtons::OK, MessageBoxIcon::Error);
-        return;
-    }
-
+ 
 	panel_Testing->Show();
 	this->testManager->SwitchToTest(0);  
     LoadQuestion();
@@ -23,6 +18,7 @@ System::Void TestingProject::TestForm::ìàòåìàòè÷åñêèéÀíàëèçToolStripMenuItem_Cli
     this->testManager->SwitchToTest(1);
     LoadQuestion();
     panel_Profile->Hide();
+
 }
 
 System::Void TestingProject::TestForm::àíãëèéñêèéToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e)
@@ -46,6 +42,7 @@ System::Void TestingProject::TestForm::òåñòûÏîÏğîãğàììèğîâàíèşToolStripMenuItem_
     panel_Testing->Show();
     this->testManager->SwitchToTest(4);
     LoadQuestion();
+    panel_Profile->Hide();
 }
 
 System::Void TestingProject::TestForm::ìîéÏğîôèëüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
@@ -78,7 +75,6 @@ System::Void TestingProject::TestForm::ìîéÏğîôèëüToolStripMenuItem_Click(System:
             this->labelAddres->Text = "Àäğåñ: " + address;
 
             LoadTestResults(fileLogin);
-
             this->panel_Profile->Visible = true;
             return;
         }
@@ -188,6 +184,15 @@ void TestingProject::TestForm::LoadTestResults(String^ userLogin)
         }
     }
     this->labelResultTests->Text = resultText;
+}
+
+System::Void TestingProject::TestForm::ãëàâíàÿToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
+{
+    panel_Testing->Hide();
+    panel_Profile->Hide();
+    UserForm^ form5 = gcnew UserForm();
+    form5->Show();
+    this->Hide();
 }
 
 
