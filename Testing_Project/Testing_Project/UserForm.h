@@ -9,25 +9,20 @@ namespace TestingProject {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
-	/// <summary>
-	/// Summary for UserForm
-	/// </summary>
 	public ref class UserForm : public System::Windows::Forms::Form
 	{
 	public:
+		String^ LoginINPUT;
+		String^ PasswordINPUT;
+
 		UserForm(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
 		}
-		String^ LoginINPUT;
-		String^ PasswordINPUT;
+		
+		
 	protected:
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
+
 		~UserForm()
 		{
 			if (components)
@@ -37,27 +32,16 @@ namespace TestingProject {
 		}
 	private: System::Windows::Forms::Button^ Login_User;
 	protected:
-
 	protected:
-
 	private: System::Windows::Forms::Button^ Register_User;
 	private: System::Windows::Forms::Label^ Label_Login;
 	private: System::Windows::Forms::Label^ Label_Password;
 	private: System::Windows::Forms::TextBox^ textBox_Log;
 	private: System::Windows::Forms::TextBox^ textBox_Pass;
 	protected:
-
 	private:
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
 		System::ComponentModel::Container ^components;
-
 #pragma region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
 		void InitializeComponent(void)
 		{
 			this->Login_User = (gcnew System::Windows::Forms::Button());
@@ -138,7 +122,6 @@ namespace TestingProject {
 
 		}
 #pragma endregion
-		
 	private: 
 		System::Void Register_User_Click(System::Object^ sender, System::EventArgs^ e);
 		System::Void Login_User_Click(System::Object^ sender, System::EventArgs^ e);

@@ -14,15 +14,19 @@ namespace TestingProject {
 	{
 	private:
 		TestManager^ testManager;
+		String^ Login;
+		String^ Password;
+
 	public:
-		TestForm(void)
+		TestForm(String^ login, String^ password)
 		{
 			InitializeComponent();
-			
 			this->testManager = gcnew TestManager();
 			panel_Testing->Hide();
+			panel_Profile->Hide();
+			Login = login;
+			Password = password;
 		}
-
 	protected:
 		~TestForm()
 		{
@@ -33,26 +37,20 @@ namespace TestingProject {
 		}
 	private: System::Windows::Forms::MenuStrip^ menuStrip_Test;
 	private: 
-		//int n = 0;
-		//int select = 0;
-		//int sel_rig = 0;
 	protected:
-
 	protected:
-
 	protected:
 	private: System::Windows::Forms::ToolStripMenuItem^ ìàòåìàòè÷åñêèåÒåñòûToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ àíãëèéñêèéToolStripMenuItem;
 	private: System::Windows::Forms::MenuStrip^ menuStrip_Main;
-
 	private: System::Windows::Forms::ToolStripMenuItem^ ãëàâíàÿToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ òåñòûÏîÏğîãğàììèğîâàíèşToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ ìîéÏğîôèëüToolStripMenuItem;
-	private: System::Windows::Forms::Panel^ panel_Testing;
+	private: System::Windows::Forms::Panel^ panel_Profile;
+
+
 	private: System::Windows::Forms::RadioButton^ answer4;
-
 	private: System::Windows::Forms::RadioButton^ answer3;
-
 	private: System::Windows::Forms::RadioButton^ answer2;
 	private: System::Windows::Forms::RadioButton^ answer1;
 	private: System::Windows::Forms::Label^ text_question;
@@ -62,18 +60,23 @@ namespace TestingProject {
 	private: System::Windows::Forms::ToolStripMenuItem^ ìàòåìàòè÷åñêèéÀíàëèçToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ àíãëèéñêèéToolStripMenuItem1;
 	private: System::Windows::Forms::ToolStripMenuItem^ ğóññêèéToolStripMenuItem;
+	private: System::Windows::Forms::Panel^ panel_Testing;
+	private: System::Windows::Forms::Label^ labelEmail;
+
+	private: System::Windows::Forms::Label^ labelName;
+
+	private: System::Windows::Forms::Label^ labelLogin;
+	private: System::Windows::Forms::Label^ labelAddres;
+
+	private: System::Windows::Forms::Label^ labelPhone;
+	private: System::Windows::Forms::Label^ labelResultTests;
+
+
 
 	private:
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
 		void InitializeComponent(void)
 		{
 			this->menuStrip_Test = (gcnew System::Windows::Forms::MenuStrip());
@@ -87,7 +90,7 @@ namespace TestingProject {
 			this->menuStrip_Main = (gcnew System::Windows::Forms::MenuStrip());
 			this->ãëàâíàÿToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ìîéÏğîôèëüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->panel_Testing = (gcnew System::Windows::Forms::Panel());
+			this->panel_Profile = (gcnew System::Windows::Forms::Panel());
 			this->Next_Question = (gcnew System::Windows::Forms::Button());
 			this->answer4 = (gcnew System::Windows::Forms::RadioButton());
 			this->answer3 = (gcnew System::Windows::Forms::RadioButton());
@@ -95,8 +98,16 @@ namespace TestingProject {
 			this->answer1 = (gcnew System::Windows::Forms::RadioButton());
 			this->text_question = (gcnew System::Windows::Forms::Label());
 			this->text_num = (gcnew System::Windows::Forms::Label());
+			this->panel_Testing = (gcnew System::Windows::Forms::Panel());
+			this->labelLogin = (gcnew System::Windows::Forms::Label());
+			this->labelName = (gcnew System::Windows::Forms::Label());
+			this->labelEmail = (gcnew System::Windows::Forms::Label());
+			this->labelPhone = (gcnew System::Windows::Forms::Label());
+			this->labelAddres = (gcnew System::Windows::Forms::Label());
+			this->labelResultTests = (gcnew System::Windows::Forms::Label());
 			this->menuStrip_Test->SuspendLayout();
 			this->menuStrip_Main->SuspendLayout();
+			this->panel_Profile->SuspendLayout();
 			this->panel_Testing->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -151,18 +162,21 @@ namespace TestingProject {
 			this->àíãëèéñêèéToolStripMenuItem1->Name = L"àíãëèéñêèéToolStripMenuItem1";
 			this->àíãëèéñêèéToolStripMenuItem1->Size = System::Drawing::Size(141, 22);
 			this->àíãëèéñêèéToolStripMenuItem1->Text = L"Àíãëèéñêèé";
+			this->àíãëèéñêèéToolStripMenuItem1->Click += gcnew System::EventHandler(this, &TestForm::àíãëèéñêèéToolStripMenuItem1_Click);
 			// 
 			// ğóññêèéToolStripMenuItem
 			// 
 			this->ğóññêèéToolStripMenuItem->Name = L"ğóññêèéToolStripMenuItem";
 			this->ğóññêèéToolStripMenuItem->Size = System::Drawing::Size(141, 22);
 			this->ğóññêèéToolStripMenuItem->Text = L"Ğóññêèé";
+			this->ğóññêèéToolStripMenuItem->Click += gcnew System::EventHandler(this, &TestForm::ğóññêèéToolStripMenuItem_Click);
 			// 
 			// òåñòûÏîÏğîãğàììèğîâàíèşToolStripMenuItem
 			// 
 			this->òåñòûÏîÏğîãğàììèğîâàíèşToolStripMenuItem->Name = L"òåñòûÏîÏğîãğàììèğîâàíèşToolStripMenuItem";
 			this->òåñòûÏîÏğîãğàììèğîâàíèşToolStripMenuItem->Size = System::Drawing::Size(186, 20);
 			this->òåñòûÏîÏğîãğàììèğîâàíèşToolStripMenuItem->Text = L"Òåñòû ïî ïğîãğàììèğîâàíèş";
+			this->òåñòûÏîÏğîãğàììèğîâàíèşToolStripMenuItem->Click += gcnew System::EventHandler(this, &TestForm::òåñòûÏîÏğîãğàììèğîâàíèşToolStripMenuItem_Click);
 			// 
 			// menuStrip_Main
 			// 
@@ -187,24 +201,24 @@ namespace TestingProject {
 			this->ìîéÏğîôèëüToolStripMenuItem->Name = L"ìîéÏğîôèëüToolStripMenuItem";
 			this->ìîéÏğîôèëüToolStripMenuItem->Size = System::Drawing::Size(97, 20);
 			this->ìîéÏğîôèëüToolStripMenuItem->Text = L"Ìîé ïğîôèëü";
+			this->ìîéÏğîôèëüToolStripMenuItem->Click += gcnew System::EventHandler(this, &TestForm::ìîéÏğîôèëüToolStripMenuItem_Click);
 			// 
-			// panel_Testing
+			// panel_Profile
 			// 
-			this->panel_Testing->Controls->Add(this->Next_Question);
-			this->panel_Testing->Controls->Add(this->answer4);
-			this->panel_Testing->Controls->Add(this->answer3);
-			this->panel_Testing->Controls->Add(this->answer2);
-			this->panel_Testing->Controls->Add(this->answer1);
-			this->panel_Testing->Controls->Add(this->text_question);
-			this->panel_Testing->Controls->Add(this->text_num);
-			this->panel_Testing->Location = System::Drawing::Point(0, 53);
-			this->panel_Testing->Name = L"panel_Testing";
-			this->panel_Testing->Size = System::Drawing::Size(1023, 430);
-			this->panel_Testing->TabIndex = 2;
+			this->panel_Profile->Controls->Add(this->labelResultTests);
+			this->panel_Profile->Controls->Add(this->labelAddres);
+			this->panel_Profile->Controls->Add(this->labelPhone);
+			this->panel_Profile->Controls->Add(this->labelEmail);
+			this->panel_Profile->Controls->Add(this->labelName);
+			this->panel_Profile->Controls->Add(this->labelLogin);
+			this->panel_Profile->Location = System::Drawing::Point(0, 53);
+			this->panel_Profile->Name = L"panel_Profile";
+			this->panel_Profile->Size = System::Drawing::Size(1023, 430);
+			this->panel_Profile->TabIndex = 2;
 			// 
 			// Next_Question
 			// 
-			this->Next_Question->Location = System::Drawing::Point(807, 364);
+			this->Next_Question->Location = System::Drawing::Point(797, 352);
 			this->Next_Question->Name = L"Next_Question";
 			this->Next_Question->Size = System::Drawing::Size(189, 43);
 			this->Next_Question->TabIndex = 6;
@@ -216,7 +230,7 @@ namespace TestingProject {
 			// 
 			this->answer4->AutoSize = true;
 			this->answer4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
-			this->answer4->Location = System::Drawing::Point(521, 283);
+			this->answer4->Location = System::Drawing::Point(511, 271);
 			this->answer4->Name = L"answer4";
 			this->answer4->Size = System::Drawing::Size(140, 29);
 			this->answer4->TabIndex = 5;
@@ -229,7 +243,7 @@ namespace TestingProject {
 			// 
 			this->answer3->AutoSize = true;
 			this->answer3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
-			this->answer3->Location = System::Drawing::Point(48, 283);
+			this->answer3->Location = System::Drawing::Point(38, 271);
 			this->answer3->Name = L"answer3";
 			this->answer3->Size = System::Drawing::Size(140, 29);
 			this->answer3->TabIndex = 4;
@@ -242,7 +256,7 @@ namespace TestingProject {
 			// 
 			this->answer2->AutoSize = true;
 			this->answer2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
-			this->answer2->Location = System::Drawing::Point(521, 167);
+			this->answer2->Location = System::Drawing::Point(511, 155);
 			this->answer2->Name = L"answer2";
 			this->answer2->Size = System::Drawing::Size(140, 29);
 			this->answer2->TabIndex = 3;
@@ -255,7 +269,7 @@ namespace TestingProject {
 			// 
 			this->answer1->AutoSize = true;
 			this->answer1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
-			this->answer1->Location = System::Drawing::Point(48, 167);
+			this->answer1->Location = System::Drawing::Point(38, 155);
 			this->answer1->Name = L"answer1";
 			this->answer1->Size = System::Drawing::Size(140, 29);
 			this->answer1->TabIndex = 2;
@@ -268,7 +282,7 @@ namespace TestingProject {
 			// 
 			this->text_question->AutoSize = true;
 			this->text_question->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 25));
-			this->text_question->Location = System::Drawing::Point(12, 71);
+			this->text_question->Location = System::Drawing::Point(2, 59);
 			this->text_question->Name = L"text_question";
 			this->text_question->Size = System::Drawing::Size(146, 39);
 			this->text_question->TabIndex = 1;
@@ -278,20 +292,89 @@ namespace TestingProject {
 			// 
 			this->text_num->AutoSize = true;
 			this->text_num->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 25));
-			this->text_num->Location = System::Drawing::Point(12, 13);
+			this->text_num->Location = System::Drawing::Point(2, 1);
 			this->text_num->Name = L"text_num";
 			this->text_num->Size = System::Drawing::Size(83, 39);
 			this->text_num->TabIndex = 0;
 			this->text_num->Text = L"1/10";
+			// 
+			// panel_Testing
+			// 
+			this->panel_Testing->Controls->Add(this->Next_Question);
+			this->panel_Testing->Controls->Add(this->answer4);
+			this->panel_Testing->Controls->Add(this->answer3);
+			this->panel_Testing->Controls->Add(this->answer2);
+			this->panel_Testing->Controls->Add(this->answer1);
+			this->panel_Testing->Controls->Add(this->text_question);
+			this->panel_Testing->Controls->Add(this->text_num);
+			this->panel_Testing->Location = System::Drawing::Point(3, 51);
+			this->panel_Testing->Name = L"panel_Testing";
+			this->panel_Testing->Size = System::Drawing::Size(1023, 427);
+			this->panel_Testing->TabIndex = 7;
+			// 
+			// labelLogin
+			// 
+			this->labelLogin->AutoSize = true;
+			this->labelLogin->Location = System::Drawing::Point(63, 46);
+			this->labelLogin->Name = L"labelLogin";
+			this->labelLogin->Size = System::Drawing::Size(35, 13);
+			this->labelLogin->TabIndex = 0;
+			this->labelLogin->Text = L"label1";
+			// 
+			// labelName
+			// 
+			this->labelName->AutoSize = true;
+			this->labelName->Location = System::Drawing::Point(68, 98);
+			this->labelName->Name = L"labelName";
+			this->labelName->Size = System::Drawing::Size(35, 13);
+			this->labelName->TabIndex = 1;
+			this->labelName->Text = L"label2";
+			// 
+			// labelEmail
+			// 
+			this->labelEmail->AutoSize = true;
+			this->labelEmail->Location = System::Drawing::Point(70, 147);
+			this->labelEmail->Name = L"labelEmail";
+			this->labelEmail->Size = System::Drawing::Size(35, 13);
+			this->labelEmail->TabIndex = 2;
+			this->labelEmail->Text = L"label3";
+			// 
+			// labelPhone
+			// 
+			this->labelPhone->AutoSize = true;
+			this->labelPhone->Location = System::Drawing::Point(78, 199);
+			this->labelPhone->Name = L"labelPhone";
+			this->labelPhone->Size = System::Drawing::Size(35, 13);
+			this->labelPhone->TabIndex = 3;
+			this->labelPhone->Text = L"label4";
+			// 
+			// labelAddres
+			// 
+			this->labelAddres->AutoSize = true;
+			this->labelAddres->Location = System::Drawing::Point(84, 241);
+			this->labelAddres->Name = L"labelAddres";
+			this->labelAddres->Size = System::Drawing::Size(35, 13);
+			this->labelAddres->TabIndex = 4;
+			this->labelAddres->Text = L"label5";
+			// 
+			// labelResultTests
+			// 
+			this->labelResultTests->AutoSize = true;
+			this->labelResultTests->Location = System::Drawing::Point(438, 54);
+			this->labelResultTests->Name = L"labelResultTests";
+			this->labelResultTests->Size = System::Drawing::Size(35, 13);
+			this->labelResultTests->TabIndex = 5;
+			this->labelResultTests->Text = L"label1";
 			// 
 			// TestForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1023, 477);
-			this->Controls->Add(this->panel_Testing);
+			this->Controls->Add(this->panel_Profile);
 			this->Controls->Add(this->menuStrip_Test);
 			this->Controls->Add(this->menuStrip_Main);
+			this->Controls->Add(this->panel_Testing);
 			this->MainMenuStrip = this->menuStrip_Test;
 			this->Name = L"TestForm";
 			this->Text = L"TestForm";
@@ -299,6 +382,8 @@ namespace TestingProject {
 			this->menuStrip_Test->PerformLayout();
 			this->menuStrip_Main->ResumeLayout(false);
 			this->menuStrip_Main->PerformLayout();
+			this->panel_Profile->ResumeLayout(false);
+			this->panel_Profile->PerformLayout();
 			this->panel_Testing->ResumeLayout(false);
 			this->panel_Testing->PerformLayout();
 			this->ResumeLayout(false);
@@ -313,6 +398,9 @@ namespace TestingProject {
 		void LoadQuestion();
 		System::Void Next_Question_Click(System::Object^ sender, System::EventArgs^ e);
 		System::Void Answer_Click(System::Object^ sender, System::EventArgs^ e);
-		
+		System::Void àíãëèéñêèéToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e);
+		System::Void ğóññêèéToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+		System::Void òåñòûÏîÏğîãğàììèğîâàíèşToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+		System::Void ìîéÏğîôèëüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

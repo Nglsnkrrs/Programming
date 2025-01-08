@@ -23,7 +23,7 @@ System::Void TestingProject::UserForm::Login_User_Click(System::Object^ sender, 
 
     if (Encryping::IsLoginExists(LoginINPUT, filePath) && Encryping::IsPasswordExists(PasswordINPUT, filePath))
     {
-        TestForm^ form4 = gcnew TestForm();
+        TestForm^ form4 = gcnew TestForm(LoginINPUT, PasswordINPUT);
         form4->Show();
         this->Hide();
     }
