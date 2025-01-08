@@ -5,9 +5,16 @@
 
 System::Void TestingProject::TestForm::дискретнаяМатематикаToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
+    if (String::IsNullOrEmpty(fileLogin))
+    {
+        MessageBox::Show("Пожалуйста, войдите в систему перед началом теста.", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
+        return;
+    }
+
 	panel_Testing->Show();
 	this->testManager->SwitchToTest(0);  
     LoadQuestion();
+    panel_Profile->Hide();
 }
 
 System::Void TestingProject::TestForm::математическийАнализToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
@@ -15,6 +22,7 @@ System::Void TestingProject::TestForm::математическийАнализToolStripMenuItem_Cli
     panel_Testing->Show();
     this->testManager->SwitchToTest(1);
     LoadQuestion();
+    panel_Profile->Hide();
 }
 
 System::Void TestingProject::TestForm::английскийToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e)
@@ -22,6 +30,7 @@ System::Void TestingProject::TestForm::английскийToolStripMenuItem1_Click(System
     panel_Testing->Show();
     this->testManager->SwitchToTest(2);
     LoadQuestion();
+    panel_Profile->Hide();
 }
 
 System::Void TestingProject::TestForm::русскийToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
@@ -29,6 +38,7 @@ System::Void TestingProject::TestForm::русскийToolStripMenuItem_Click(System::Ob
     panel_Testing->Show();
     this->testManager->SwitchToTest(3);
     LoadQuestion();
+    panel_Profile->Hide();
 }
 
 System::Void TestingProject::TestForm::тестыПоПрограммированиюToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
@@ -51,7 +61,7 @@ System::Void TestingProject::TestForm::мойПрофильToolStripMenuItem_Click(System:
             continue;
         }
 
-        System::String^ fileLogin = Encryping::Decrypt(userData[0], Key);
+        fileLogin = Encryping::Decrypt(userData[0], Key);
         System::String^ filePassword = Encryping::Decrypt(userData[1], Key);
 
         if (fileLogin == Login && filePassword == Password) {
@@ -60,22 +70,21 @@ System::Void TestingProject::TestForm::мойПрофильToolStripMenuItem_Click(System:
             System::String^ name = Encryping::Decrypt(userData[3], Key);
             System::String^ phone = Encryping::Decrypt(userData[4], Key);
             System::String^ address = Encryping::Decrypt(userData[5], Key);
-            
+
             this->labelLogin->Text = "Логин: " + login;
             this->labelEmail->Text = "Электронная почта: " + email;
             this->labelName->Text = "ФИО: " + name;
             this->labelPhone->Text = "Телефон: " + phone;
             this->labelAddres->Text = "Адрес: " + address;
 
+            LoadTestResults(fileLogin);
 
             this->panel_Profile->Visible = true;
             return;
         }
     }
-
     MessageBox::Show("Неверный логин или пароль", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
 }
-
 
 void TestingProject::TestForm::LoadQuestion()
 {
@@ -101,13 +110,39 @@ void TestingProject::TestForm::LoadQuestion()
 
 System::Void TestingProject::TestForm::Next_Question_Click(System::Object^ sender, System::EventArgs^ e)
 {
+
     if (this->testManager->NextQuestion())
     {
         LoadQuestion();
     }
     else
     {
-        String^ result = "Тест завершен! Количество правильных ответов: " + System::Convert::ToString(this->testManager->GetCorrectAnswersCount()) + "/10";
+        System::String^ testName = "Тест";
+
+        switch (this->testManager->currentTestIndex)
+        {
+        case 0:
+            testName = "Дискретная математика";  
+            break;
+        case 1:
+            testName = "Математический анализ";
+            break;
+        case 2:
+            testName = "Английский";
+            break;
+        case 3:
+            testName = "Русский";
+            break;
+        case 4:
+            testName = "Программирование";
+            break;
+        }
+
+        int correctAnswers = this->testManager->GetCorrectAnswersCount();
+        this->testManager->SaveTestResults(testName, correctAnswers,fileLogin);
+   
+
+        String^ result = "Тест завершен! Количество правильных ответов: " + System::Convert::ToString(correctAnswers) + "/10";
         MessageBox::Show(result, "Результат теста", MessageBoxButtons::OK, MessageBoxIcon::Information);
 
         this->testManager->Reset();
@@ -134,3 +169,25 @@ System::Void TestingProject::TestForm::Answer_Click(System::Object^ sender, Syst
         this->testManager->SetSelectedAnswer(3);
     }
 }
+
+void TestingProject::TestForm::LoadTestResults(String^ userLogin)
+{
+    String^ filePath = "TestResults.txt";
+    array<System::String^>^ results = System::IO::File::ReadAllLines(filePath);
+
+    String^ resultText = "Результаты тестов:\n";
+
+    for each(System::String ^ resultLine in results) {
+        array<System::String^>^ resultData = resultLine->Split('/');
+        if (resultData->Length == 4 && resultData[0] == userLogin) {
+            String^ testName = resultData[1];
+            String^ correctAnswers = resultData[2];
+            String^ totalQuestions = resultData[3];
+
+            resultText += testName + ": " + correctAnswers + "/" + totalQuestions + "\n";
+        }
+    }
+    this->labelResultTests->Text = resultText;
+}
+
+

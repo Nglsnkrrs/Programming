@@ -22,4 +22,5 @@ public:
     int GetCorrectAnswersCount();
     void Reset();
     int GetCurrentQuestionIndex();
+    void SaveTestResults(String^ testName, int correctAnswers, String^ userLogin);
 };

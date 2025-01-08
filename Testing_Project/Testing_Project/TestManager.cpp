@@ -235,3 +235,18 @@ int TestManager::GetCurrentQuestionIndex()
 {
     return this->currentQuestionIndex;
 }
+
+void TestManager::SaveTestResults(String^ testName, int correctAnswers, String^ userLogin)
+{
+    String^ filePath = "TestResults.txt";
+
+    int totalQuestions = 10;
+
+    // Используем "/" как разделитель для унификации
+    String^ result = userLogin + "/" + testName + "/" + correctAnswers + "/" + totalQuestions;
+
+    System::IO::File::AppendAllText(filePath, result + Environment::NewLine);
+}
+
+
+

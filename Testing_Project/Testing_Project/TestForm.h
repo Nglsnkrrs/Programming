@@ -16,7 +16,8 @@ namespace TestingProject {
 		TestManager^ testManager;
 		String^ Login;
 		String^ Password;
-
+	public:
+		String^ fileLogin;
 	public:
 		TestForm(String^ login, String^ password)
 		{
@@ -402,5 +403,7 @@ namespace TestingProject {
 		System::Void ğóññêèéToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 		System::Void òåñòûÏîÏğîãğàììèğîâàíèşToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 		System::Void ìîéÏğîôèëüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+		void LoadTestResults(String^ userLogin);
+		/*String^ LogiMyOrofile();*/
 };
 }
