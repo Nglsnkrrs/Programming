@@ -1,4 +1,5 @@
 #include "MainForm.h"
+#include "AdminForm.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
@@ -33,4 +34,12 @@ System::Void TestingProject::MainForm::MainForm_FormClosing(System::Object^ send
 	}
 
 	Application::Exit();
+}
+
+System::Void TestingProject::MainForm::Main_Admin_Click(System::Object^ sender, System::EventArgs^ e)
+{
+    AdminForm^ form3 = gcnew AdminForm();
+    form3->Show();
+
+    this->Hide();
 }

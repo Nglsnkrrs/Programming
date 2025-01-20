@@ -44,12 +44,10 @@ System::Void TestingProject::UserRegister::Reg_Click(System::Object^ sender, Sys
     String^ userData = encryptedLogin + "/" + encryptedPassword +
         "/" + encryptedEmail + "/" + encryptedName + "/" + encryptedAddres + "/" + encryptedPhone;
 
-    
-
     Encryping::WriteEncryptedToFile(userData, filePath);
 
-    UserForm^ form2 = gcnew UserForm();
-    form2->Show();
+    UserForm^ UserForm1 = gcnew UserForm();
+    UserForm1->Show();
     this->Hide();
 }
 

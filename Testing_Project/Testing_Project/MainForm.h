@@ -10,16 +10,13 @@ namespace TestingProject {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
-	/// <summary>
-	/// Summary for MainForm
-	/// </summary>
 	public ref class MainForm : public System::Windows::Forms::Form
 	{
 	public:
 		MainForm(void)
 		{
 			InitializeComponent();
-
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 		}
 
 	protected:
@@ -72,6 +69,7 @@ namespace TestingProject {
 			this->Main_Admin->TabIndex = 1;
 			this->Main_Admin->Text = L"Администратор";
 			this->Main_Admin->UseVisualStyleBackColor = true;
+			this->Main_Admin->Click += gcnew System::EventHandler(this, &MainForm::Main_Admin_Click);
 			// 
 			// MainForm
 			// 
@@ -90,7 +88,6 @@ namespace TestingProject {
 	private: 
 		System::Void Main_User_Click(System::Object^ sender, System::EventArgs^ e);
 		System::Void MainForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
-		
-
+		System::Void Main_Admin_Click(System::Object^ sender, System::EventArgs^ e);
 	};
 }

@@ -18,6 +18,7 @@ namespace TestingProject {
 		UserForm(void)
 		{
 			InitializeComponent();
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 		}
 		
 		

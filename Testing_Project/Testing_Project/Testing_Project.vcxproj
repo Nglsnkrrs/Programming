@@ -120,22 +120,56 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddNewTestForm.cpp" />
+    <ClCompile Include="AddNewUserForm.cpp" />
+    <ClCompile Include="AdminForm.cpp" />
+    <ClCompile Include="AdminProfileForm.cpp" />
+    <ClCompile Include="AdminRegister.cpp" />
+    <ClCompile Include="DeleteUser.cpp" />
+    <ClCompile Include="EditUserForm.cpp" />
     <ClCompile Include="Encryping.cpp" />
     <ClCompile Include="MainForm.cpp" />
+    <ClCompile Include="MyUserProfileForm.cpp" />
+    <ClCompile Include="ResultForm.cpp" />
     <ClCompile Include="TestForm.cpp" />
-    <ClCompile Include="TestManager.cpp" />
     <ClCompile Include="UserForm.cpp" />
     <ClCompile Include="UserRegister.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddNewTestForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AddNewUserForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AdminForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AdminProfileForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AdminRegister.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="DeleteUser.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="EditUserForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Encryping.h" />
     <ClInclude Include="MainForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MyUserProfileForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ResultForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="TestForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="TestManager.h" />
     <ClInclude Include="UserForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -144,8 +178,35 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddNewTestForm.resx">
+      <DependentUpon>AddNewTestForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddNewUserForm.resx">
+      <DependentUpon>AddNewUserForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminForm.resx">
+      <DependentUpon>AdminForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminProfileForm.resx">
+      <DependentUpon>AdminProfileForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminRegister.resx">
+      <DependentUpon>AdminRegister.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteUser.resx">
+      <DependentUpon>DeleteUser.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditUserForm.resx">
+      <DependentUpon>EditUserForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyUserProfileForm.resx">
+      <DependentUpon>MyUserProfileForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResultForm.resx">
+      <DependentUpon>ResultForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestForm.resx">
       <DependentUpon>TestForm.h</DependentUpon>

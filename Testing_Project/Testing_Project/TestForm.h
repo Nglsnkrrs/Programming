@@ -1,11 +1,12 @@
 #pragma once
-#include "TestManager.h"
 
 namespace TestingProject {
 
+	using namespace std;
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
+	using namespace System::Collections::Generic;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
@@ -13,22 +14,33 @@ namespace TestingProject {
 	public ref class TestForm : public System::Windows::Forms::Form
 	{
 	private:
-		TestManager^ testManager;
-		String^ Login;
-		String^ Password;
-
-
+		String^ Login1;
+		String^ Password1;
+		ToolStripMenuItem^ testsMenuItem;
+		ListBox^ questionsListBox;
+		Button^ nextButton;
+		List<String^>^ testQuestions;
+		List<List<String^>^>^ testOptions;
+		List<String^>^ testAnswers;
+		
+		int currentQuestionIndex;
+		int correctAnswers = 0;
+	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	public:
 		String^ fileLogin;
+		String^ categoryName;
 	public:
-		TestForm(String^ login, String^ password)
+		TestForm(String^ login1, String^ password1)
 		{
 			InitializeComponent();
-			this->testManager = gcnew TestManager();
 			panel_Testing->Hide();
-			panel_Profile->Hide();
-			Login = login;
-			Password = password;
+			Login1 = login1;
+			Password1 = password1;
+
+			testQuestions = gcnew List<String^>();
+			testOptions = gcnew List<List<String^>^>();
+			testAnswers = gcnew List<String^>();
+			loadTests();
 		}
 	protected:
 		~TestForm()
@@ -38,20 +50,14 @@ namespace TestingProject {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::MenuStrip^ menuStrip_Test;
-	private: 
+
+	private:
 	protected:
 	protected:
 	protected:
-	private: System::Windows::Forms::ToolStripMenuItem^ ìàòåìàòè÷åñêèåÒåñòûToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ àíãëèéñêèéToolStripMenuItem;
 	private: System::Windows::Forms::MenuStrip^ menuStrip_Main;
 	private: System::Windows::Forms::ToolStripMenuItem^ ãëàâíàÿToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ òåñòûÏîÏðîãðàììèðîâàíèþToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ ìîéÏðîôèëüToolStripMenuItem;
-	private: System::Windows::Forms::Panel^ panel_Profile;
-
-
 	private: System::Windows::Forms::RadioButton^ answer4;
 	private: System::Windows::Forms::RadioButton^ answer3;
 	private: System::Windows::Forms::RadioButton^ answer2;
@@ -59,47 +65,16 @@ namespace TestingProject {
 	private: System::Windows::Forms::Label^ text_question;
 	private: System::Windows::Forms::Label^ text_num;
 	private: System::Windows::Forms::Button^ Next_Question;
-	private: System::Windows::Forms::ToolStripMenuItem^ äèñêðåòíàÿÌàòåìàòèêàToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ ìàòåìàòè÷åñêèéÀíàëèçToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ àíãëèéñêèéToolStripMenuItem1;
-	private: System::Windows::Forms::ToolStripMenuItem^ ðóññêèéToolStripMenuItem;
 	private: System::Windows::Forms::Panel^ panel_Testing;
-	private: System::Windows::Forms::Label^ labelEmail;
-
-	private: System::Windows::Forms::Label^ labelName;
-
-	private: System::Windows::Forms::Label^ labelLogin;
-	private: System::Windows::Forms::Label^ labelAddres;
-
-	private: System::Windows::Forms::Label^ labelPhone;
-	private: System::Windows::Forms::Label^ labelResultTests;
-
-
-
 	private:
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		void InitializeComponent(void)
 		{
-			this->menuStrip_Test = (gcnew System::Windows::Forms::MenuStrip());
-			this->ìàòåìàòè÷åñêèåÒåñòûToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->äèñêðåòíàÿÌàòåìàòèêàToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->ìàòåìàòè÷åñêèéÀíàëèçToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->àíãëèéñêèéToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->àíãëèéñêèéToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->ðóññêèéToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->òåñòûÏîÏðîãðàììèðîâàíèþToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip_Main = (gcnew System::Windows::Forms::MenuStrip());
 			this->ãëàâíàÿToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ìîéÏðîôèëüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->panel_Profile = (gcnew System::Windows::Forms::Panel());
-			this->labelResultTests = (gcnew System::Windows::Forms::Label());
-			this->labelAddres = (gcnew System::Windows::Forms::Label());
-			this->labelPhone = (gcnew System::Windows::Forms::Label());
-			this->labelEmail = (gcnew System::Windows::Forms::Label());
-			this->labelName = (gcnew System::Windows::Forms::Label());
-			this->labelLogin = (gcnew System::Windows::Forms::Label());
 			this->Next_Question = (gcnew System::Windows::Forms::Button());
 			this->answer4 = (gcnew System::Windows::Forms::RadioButton());
 			this->answer3 = (gcnew System::Windows::Forms::RadioButton());
@@ -108,78 +83,10 @@ namespace TestingProject {
 			this->text_question = (gcnew System::Windows::Forms::Label());
 			this->text_num = (gcnew System::Windows::Forms::Label());
 			this->panel_Testing = (gcnew System::Windows::Forms::Panel());
-			this->menuStrip_Test->SuspendLayout();
+			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->menuStrip_Main->SuspendLayout();
-			this->panel_Profile->SuspendLayout();
 			this->panel_Testing->SuspendLayout();
 			this->SuspendLayout();
-			// 
-			// menuStrip_Test
-			// 
-			this->menuStrip_Test->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
-				this->ìàòåìàòè÷åñêèåÒåñòûToolStripMenuItem,
-					this->àíãëèéñêèéToolStripMenuItem, this->òåñòûÏîÏðîãðàììèðîâàíèþToolStripMenuItem
-			});
-			this->menuStrip_Test->Location = System::Drawing::Point(0, 24);
-			this->menuStrip_Test->Name = L"menuStrip_Test";
-			this->menuStrip_Test->Size = System::Drawing::Size(1023, 24);
-			this->menuStrip_Test->TabIndex = 0;
-			this->menuStrip_Test->Text = L"menuStrip1";
-			// 
-			// ìàòåìàòè÷åñêèåÒåñòûToolStripMenuItem
-			// 
-			this->ìàòåìàòè÷åñêèåÒåñòûToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
-				this->äèñêðåòíàÿÌàòåìàòèêàToolStripMenuItem,
-					this->ìàòåìàòè÷åñêèéÀíàëèçToolStripMenuItem
-			});
-			this->ìàòåìàòè÷åñêèåÒåñòûToolStripMenuItem->Name = L"ìàòåìàòè÷åñêèåÒåñòûToolStripMenuItem";
-			this->ìàòåìàòè÷åñêèåÒåñòûToolStripMenuItem->Size = System::Drawing::Size(146, 20);
-			this->ìàòåìàòè÷åñêèåÒåñòûToolStripMenuItem->Text = L"Ìàòåìàòè÷åñêèå òåñòû";
-			// 
-			// äèñêðåòíàÿÌàòåìàòèêàToolStripMenuItem
-			// 
-			this->äèñêðåòíàÿÌàòåìàòèêàToolStripMenuItem->Name = L"äèñêðåòíàÿÌàòåìàòèêàToolStripMenuItem";
-			this->äèñêðåòíàÿÌàòåìàòèêàToolStripMenuItem->Size = System::Drawing::Size(209, 22);
-			this->äèñêðåòíàÿÌàòåìàòèêàToolStripMenuItem->Text = L"Äèñêðåòíàÿ ìàòåìàòèêà";
-			this->äèñêðåòíàÿÌàòåìàòèêàToolStripMenuItem->Click += gcnew System::EventHandler(this, &TestForm::äèñêðåòíàÿÌàòåìàòèêàToolStripMenuItem_Click);
-			// 
-			// ìàòåìàòè÷åñêèéÀíàëèçToolStripMenuItem
-			// 
-			this->ìàòåìàòè÷åñêèéÀíàëèçToolStripMenuItem->Name = L"ìàòåìàòè÷åñêèéÀíàëèçToolStripMenuItem";
-			this->ìàòåìàòè÷åñêèéÀíàëèçToolStripMenuItem->Size = System::Drawing::Size(209, 22);
-			this->ìàòåìàòè÷åñêèéÀíàëèçToolStripMenuItem->Text = L"Ìàòåìàòè÷åñêèé àíàëèç";
-			this->ìàòåìàòè÷åñêèéÀíàëèçToolStripMenuItem->Click += gcnew System::EventHandler(this, &TestForm::ìàòåìàòè÷åñêèéÀíàëèçToolStripMenuItem_Click);
-			// 
-			// àíãëèéñêèéToolStripMenuItem
-			// 
-			this->àíãëèéñêèéToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
-				this->àíãëèéñêèéToolStripMenuItem1,
-					this->ðóññêèéToolStripMenuItem
-			});
-			this->àíãëèéñêèéToolStripMenuItem->Name = L"àíãëèéñêèéToolStripMenuItem";
-			this->àíãëèéñêèéToolStripMenuItem->Size = System::Drawing::Size(108, 20);
-			this->àíãëèéñêèéToolStripMenuItem->Text = L"ßçûêîâûå òåñòû";
-			// 
-			// àíãëèéñêèéToolStripMenuItem1
-			// 
-			this->àíãëèéñêèéToolStripMenuItem1->Name = L"àíãëèéñêèéToolStripMenuItem1";
-			this->àíãëèéñêèéToolStripMenuItem1->Size = System::Drawing::Size(141, 22);
-			this->àíãëèéñêèéToolStripMenuItem1->Text = L"Àíãëèéñêèé";
-			this->àíãëèéñêèéToolStripMenuItem1->Click += gcnew System::EventHandler(this, &TestForm::àíãëèéñêèéToolStripMenuItem1_Click);
-			// 
-			// ðóññêèéToolStripMenuItem
-			// 
-			this->ðóññêèéToolStripMenuItem->Name = L"ðóññêèéToolStripMenuItem";
-			this->ðóññêèéToolStripMenuItem->Size = System::Drawing::Size(141, 22);
-			this->ðóññêèéToolStripMenuItem->Text = L"Ðóññêèé";
-			this->ðóññêèéToolStripMenuItem->Click += gcnew System::EventHandler(this, &TestForm::ðóññêèéToolStripMenuItem_Click);
-			// 
-			// òåñòûÏîÏðîãðàììèðîâàíèþToolStripMenuItem
-			// 
-			this->òåñòûÏîÏðîãðàììèðîâàíèþToolStripMenuItem->Name = L"òåñòûÏîÏðîãðàììèðîâàíèþToolStripMenuItem";
-			this->òåñòûÏîÏðîãðàììèðîâàíèþToolStripMenuItem->Size = System::Drawing::Size(186, 20);
-			this->òåñòûÏîÏðîãðàììèðîâàíèþToolStripMenuItem->Text = L"Òåñòû ïî ïðîãðàììèðîâàíèþ";
-			this->òåñòûÏîÏðîãðàììèðîâàíèþToolStripMenuItem->Click += gcnew System::EventHandler(this, &TestForm::òåñòûÏîÏðîãðàììèðîâàíèþToolStripMenuItem_Click);
 			// 
 			// menuStrip_Main
 			// 
@@ -187,7 +94,7 @@ namespace TestingProject {
 				this->ãëàâíàÿToolStripMenuItem,
 					this->ìîéÏðîôèëüToolStripMenuItem
 			});
-			this->menuStrip_Main->Location = System::Drawing::Point(0, 0);
+			this->menuStrip_Main->Location = System::Drawing::Point(0, 24);
 			this->menuStrip_Main->Name = L"menuStrip_Main";
 			this->menuStrip_Main->Size = System::Drawing::Size(1023, 24);
 			this->menuStrip_Main->TabIndex = 1;
@@ -198,7 +105,6 @@ namespace TestingProject {
 			this->ãëàâíàÿToolStripMenuItem->Name = L"ãëàâíàÿToolStripMenuItem";
 			this->ãëàâíàÿToolStripMenuItem->Size = System::Drawing::Size(63, 20);
 			this->ãëàâíàÿToolStripMenuItem->Text = L"Ãëàâíàÿ";
-			this->ãëàâíàÿToolStripMenuItem->Click += gcnew System::EventHandler(this, &TestForm::ãëàâíàÿToolStripMenuItem_Click);
 			// 
 			// ìîéÏðîôèëüToolStripMenuItem
 			// 
@@ -206,80 +112,6 @@ namespace TestingProject {
 			this->ìîéÏðîôèëüToolStripMenuItem->Size = System::Drawing::Size(97, 20);
 			this->ìîéÏðîôèëüToolStripMenuItem->Text = L"Ìîé ïðîôèëü";
 			this->ìîéÏðîôèëüToolStripMenuItem->Click += gcnew System::EventHandler(this, &TestForm::ìîéÏðîôèëüToolStripMenuItem_Click);
-			// 
-			// panel_Profile
-			// 
-			this->panel_Profile->Controls->Add(this->labelResultTests);
-			this->panel_Profile->Controls->Add(this->labelAddres);
-			this->panel_Profile->Controls->Add(this->labelPhone);
-			this->panel_Profile->Controls->Add(this->labelEmail);
-			this->panel_Profile->Controls->Add(this->labelName);
-			this->panel_Profile->Controls->Add(this->labelLogin);
-			this->panel_Profile->Location = System::Drawing::Point(3, 51);
-			this->panel_Profile->Name = L"panel_Profile";
-			this->panel_Profile->Size = System::Drawing::Size(1020, 427);
-			this->panel_Profile->TabIndex = 2;
-			this->panel_Profile->Click += gcnew System::EventHandler(this, &TestForm::ìîéÏðîôèëüToolStripMenuItem_Click);
-			// 
-			// labelResultTests
-			// 
-			this->labelResultTests->AutoSize = true;
-			this->labelResultTests->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 25));
-			this->labelResultTests->Location = System::Drawing::Point(480, 32);
-			this->labelResultTests->Name = L"labelResultTests";
-			this->labelResultTests->Size = System::Drawing::Size(109, 39);
-			this->labelResultTests->TabIndex = 5;
-			this->labelResultTests->Text = L"label1";
-			// 
-			// labelAddres
-			// 
-			this->labelAddres->AutoSize = true;
-			this->labelAddres->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
-			this->labelAddres->Location = System::Drawing::Point(36, 350);
-			this->labelAddres->Name = L"labelAddres";
-			this->labelAddres->Size = System::Drawing::Size(64, 25);
-			this->labelAddres->TabIndex = 4;
-			this->labelAddres->Text = L"label5";
-			// 
-			// labelPhone
-			// 
-			this->labelPhone->AutoSize = true;
-			this->labelPhone->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
-			this->labelPhone->Location = System::Drawing::Point(36, 269);
-			this->labelPhone->Name = L"labelPhone";
-			this->labelPhone->Size = System::Drawing::Size(64, 25);
-			this->labelPhone->TabIndex = 3;
-			this->labelPhone->Text = L"label4";
-			// 
-			// labelEmail
-			// 
-			this->labelEmail->AutoSize = true;
-			this->labelEmail->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
-			this->labelEmail->Location = System::Drawing::Point(36, 185);
-			this->labelEmail->Name = L"labelEmail";
-			this->labelEmail->Size = System::Drawing::Size(64, 25);
-			this->labelEmail->TabIndex = 2;
-			this->labelEmail->Text = L"label3";
-			// 
-			// labelName
-			// 
-			this->labelName->AutoSize = true;
-			this->labelName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
-			this->labelName->Location = System::Drawing::Point(36, 112);
-			this->labelName->Name = L"labelName";
-			this->labelName->Size = System::Drawing::Size(64, 25);
-			this->labelName->TabIndex = 1;
-			this->labelName->Text = L"label2";
-			// 
-			// labelLogin
-			// 
-			this->labelLogin->AutoSize = true;
-			this->labelLogin->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
-			this->labelLogin->Location = System::Drawing::Point(36, 32);
-			this->labelLogin->Name = L"labelLogin";
-			this->labelLogin->Size = System::Drawing::Size(64, 25);
-			this->labelLogin->TabIndex = 0;
-			this->labelLogin->Text = L"label1";
 			// 
 			// Next_Question
 			// 
@@ -289,7 +121,6 @@ namespace TestingProject {
 			this->Next_Question->TabIndex = 6;
 			this->Next_Question->Text = L"Äàëåå";
 			this->Next_Question->UseVisualStyleBackColor = true;
-			this->Next_Question->Click += gcnew System::EventHandler(this, &TestForm::Next_Question_Click);
 			// 
 			// answer4
 			// 
@@ -302,7 +133,6 @@ namespace TestingProject {
 			this->answer4->TabStop = true;
 			this->answer4->Text = L"radioButton3";
 			this->answer4->UseVisualStyleBackColor = true;
-			this->answer4->CheckedChanged += gcnew System::EventHandler(this, &TestForm::Answer_Click);
 			// 
 			// answer3
 			// 
@@ -315,7 +145,6 @@ namespace TestingProject {
 			this->answer3->TabStop = true;
 			this->answer3->Text = L"radioButton2";
 			this->answer3->UseVisualStyleBackColor = true;
-			this->answer3->CheckedChanged += gcnew System::EventHandler(this, &TestForm::Answer_Click);
 			// 
 			// answer2
 			// 
@@ -328,7 +157,6 @@ namespace TestingProject {
 			this->answer2->TabStop = true;
 			this->answer2->Text = L"radioButton1";
 			this->answer2->UseVisualStyleBackColor = true;
-			this->answer2->CheckedChanged += gcnew System::EventHandler(this, &TestForm::Answer_Click);
 			// 
 			// answer1
 			// 
@@ -341,7 +169,6 @@ namespace TestingProject {
 			this->answer1->TabStop = true;
 			this->answer1->Text = L"radioButton1";
 			this->answer1->UseVisualStyleBackColor = true;
-			this->answer1->CheckedChanged += gcnew System::EventHandler(this, &TestForm::Answer_Click);
 			// 
 			// text_question
 			// 
@@ -377,44 +204,52 @@ namespace TestingProject {
 			this->panel_Testing->Size = System::Drawing::Size(1023, 427);
 			this->panel_Testing->TabIndex = 7;
 			// 
+			// menuStrip1
+			// 
+			this->menuStrip1->Location = System::Drawing::Point(0, 0);
+			this->menuStrip1->Name = L"menuStrip1";
+			this->menuStrip1->Size = System::Drawing::Size(1023, 24);
+			this->menuStrip1->TabIndex = 8;
+			this->menuStrip1->Text = L"menuStrip1";
+			// 
 			// TestForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1023, 477);
-			this->Controls->Add(this->panel_Profile);
-			this->Controls->Add(this->menuStrip_Test);
 			this->Controls->Add(this->menuStrip_Main);
+			this->Controls->Add(this->menuStrip1);
 			this->Controls->Add(this->panel_Testing);
-			this->MainMenuStrip = this->menuStrip_Test;
 			this->Name = L"TestForm";
 			this->Text = L"TestForm";
-			this->menuStrip_Test->ResumeLayout(false);
-			this->menuStrip_Test->PerformLayout();
 			this->menuStrip_Main->ResumeLayout(false);
 			this->menuStrip_Main->PerformLayout();
-			this->panel_Profile->ResumeLayout(false);
-			this->panel_Profile->PerformLayout();
 			this->panel_Testing->ResumeLayout(false);
 			this->panel_Testing->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
-		}
-#pragma endregion
-	
-	private: 
-		System::Void äèñêðåòíàÿÌàòåìàòèêàToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
-		System::Void ìàòåìàòè÷åñêèéÀíàëèçToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
-		void LoadQuestion();
-		System::Void Next_Question_Click(System::Object^ sender, System::EventArgs^ e);
-		System::Void Answer_Click(System::Object^ sender, System::EventArgs^ e);
-		System::Void àíãëèéñêèéToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e);
-		System::Void ðóññêèéToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
-		System::Void òåñòûÏîÏðîãðàììèðîâàíèþToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
-		System::Void ìîéÏðîôèëüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
-		void LoadTestResults(String^ userLogin);
-		System::Void ãëàâíàÿToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+			answer1->Click += gcnew EventHandler(this, &TestForm::OnAnswerClick);
+			answer2->Click += gcnew EventHandler(this, &TestForm::OnAnswerClick);
+			answer3->Click += gcnew EventHandler(this, &TestForm::OnAnswerClick);
+			answer4->Click += gcnew EventHandler(this, &TestForm::OnAnswerClick);
+			Next_Question->Click += gcnew EventHandler(this, &TestForm::OnNextButtonClick);
 
+
+		}
+
+#pragma endregion
+
+	private:
+
+		System::Void ìîéÏðîôèëüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+		void loadTests();
+		void OnCategoryItemClick(Object^ sender, EventArgs^ e);
+		void loadTestFromFile(String^ testName);
+		void displayQuestion();
+		void saveTestResults(String^ testName, int grade);
+		void OnAnswerClick(Object^ sender, EventArgs^ e);
+		void OnNextButtonClick(Object^ sender, EventArgs^ e);
+		
 };
 }

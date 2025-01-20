@@ -18,7 +18,7 @@ namespace TestingProject {
 		UserRegister(void)
 		{
 			InitializeComponent();
-
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 		}
 		String^ Login;
 		String^ encryptedLogin;
