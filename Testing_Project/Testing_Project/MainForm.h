@@ -1,11 +1,11 @@
 #pragma once
 #include "UserForm.h"
+#include "FormManager.h"
 
 namespace TestingProject {
 
 	using namespace System;
 	using namespace System::ComponentModel;
-	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
@@ -17,6 +17,7 @@ namespace TestingProject {
 		{
 			InitializeComponent();
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			FormManager::ActiveForms->Add(this);
 		}
 
 	protected:
@@ -53,9 +54,10 @@ namespace TestingProject {
 			// 
 			// Main_User
 			// 
-			this->Main_User->Location = System::Drawing::Point(77, 54);
+			this->Main_User->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
+			this->Main_User->Location = System::Drawing::Point(38, 48);
 			this->Main_User->Name = L"Main_User";
-			this->Main_User->Size = System::Drawing::Size(111, 45);
+			this->Main_User->Size = System::Drawing::Size(205, 49);
 			this->Main_User->TabIndex = 0;
 			this->Main_User->Text = L"Пользователь";
 			this->Main_User->UseVisualStyleBackColor = true;
@@ -63,9 +65,10 @@ namespace TestingProject {
 			// 
 			// Main_Admin
 			// 
-			this->Main_Admin->Location = System::Drawing::Point(79, 141);
+			this->Main_Admin->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
+			this->Main_Admin->Location = System::Drawing::Point(40, 135);
 			this->Main_Admin->Name = L"Main_Admin";
-			this->Main_Admin->Size = System::Drawing::Size(108, 39);
+			this->Main_Admin->Size = System::Drawing::Size(202, 52);
 			this->Main_Admin->TabIndex = 1;
 			this->Main_Admin->Text = L"Администратор";
 			this->Main_Admin->UseVisualStyleBackColor = true;
@@ -80,6 +83,7 @@ namespace TestingProject {
 			this->Controls->Add(this->Main_User);
 			this->Name = L"MainForm";
 			this->Text = L"MainForm";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &MainForm::MainForm_FormClosing_1);
 			this->ResumeLayout(false);
 
 		}
@@ -89,5 +93,6 @@ namespace TestingProject {
 		System::Void Main_User_Click(System::Object^ sender, System::EventArgs^ e);
 		System::Void MainForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
 		System::Void Main_Admin_Click(System::Object^ sender, System::EventArgs^ e);
+		System::Void MainForm_FormClosing_1(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
 	};
 }

@@ -35,3 +35,8 @@ System::Void TestingProject::UserForm::Login_User_Click(System::Object^ sender, 
     }
 
 }
+
+System::Void TestingProject::UserForm::UserForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e)
+{
+    FormManager::CloseAllForms();
+}

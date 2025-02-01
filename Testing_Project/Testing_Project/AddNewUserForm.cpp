@@ -17,7 +17,7 @@ System::Void TestingProject::AddNewUserForm::AddNewUser_Click(System::Object^ se
 	String^ encryptedNewPhone = Encryping::Encrypt(Newphone, Key);
 	String^ encryptedNewAddress = Encryping::Encrypt(Newaddress, Key);
 
-	String^ userData = encryptedNewLogin + "/" + encryptedNewPassword + "/" + encryptedNewEmail + "/" + encryptedNewName + "/" + encryptedNewPhone + "/" + encryptedNewAddress;
+	String^ userData = encryptedNewLogin + ";" + encryptedNewPassword + ";" + encryptedNewEmail + ";" + encryptedNewName + ";" + encryptedNewPhone + ";" + encryptedNewAddress;
 
 	Encryping::WriteEncryptedToFile(userData, "UserData.txt");
 

@@ -34,7 +34,7 @@ void TestingProject::ResultForm::LoadTestResultsByCategory(String^ category)
 
 	for each (System::String ^ line in results)
 	{
-		array<System::String^>^ resultData = line->Split('/');
+		array<System::String^>^ resultData = line->Split(';');
 
 		if (resultData->Length == 3)
 		{
@@ -73,7 +73,7 @@ void TestingProject::ResultForm::LoadTestResultsByUser(String^ userLogin)
 
 	for each (System::String ^ line in results)
 	{
-		array<System::String^>^ resultData = line->Split('/');
+		array<System::String^>^ resultData = line->Split(';');
 		if (resultData->Length == 3 && resultData[0] == userLogin)
 		{
 			String^ categoryName = resultData[1];

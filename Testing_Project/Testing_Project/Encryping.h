@@ -6,6 +6,7 @@ using namespace System::IO;
 public ref class Encryping
 {
 public:
+
     static String^ Encrypt(String^ Text, String^ key);
     static String^ Decrypt(String^ Text, String^ key);
     static void WriteEncryptedToFile(String^ encryptedText, String^ filePath);

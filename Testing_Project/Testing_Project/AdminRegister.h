@@ -1,5 +1,5 @@
 #pragma once
-
+#include "FormManager.h"
 namespace TestingProject {
 
 	using namespace System;
@@ -19,6 +19,7 @@ namespace TestingProject {
 		{
 			InitializeComponent();
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			FormManager::ActiveForms->Add(this);
 		}
 		String^ LoginAdmin;
 		String^ PasswordAdmin;
@@ -57,6 +58,7 @@ namespace TestingProject {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(AdminRegister::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->textBox_login = (gcnew System::Windows::Forms::TextBox());
@@ -67,41 +69,48 @@ namespace TestingProject {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(84, 146);
+			this->label1->BackColor = System::Drawing::Color::Transparent;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
+			this->label1->Location = System::Drawing::Point(47, 70);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(35, 13);
+			this->label1->Size = System::Drawing::Size(68, 25);
 			this->label1->TabIndex = 0;
-			this->label1->Text = L"label1";
+			this->label1->Text = L"Логин";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(84, 219);
+			this->label2->BackColor = System::Drawing::Color::Transparent;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
+			this->label2->Location = System::Drawing::Point(47, 143);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(35, 13);
+			this->label2->Size = System::Drawing::Size(80, 25);
 			this->label2->TabIndex = 1;
-			this->label2->Text = L"label2";
+			this->label2->Text = L"Пароль";
 			// 
 			// textBox_login
 			// 
-			this->textBox_login->Location = System::Drawing::Point(201, 139);
+			this->textBox_login->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
+			this->textBox_login->Location = System::Drawing::Point(202, 65);
 			this->textBox_login->Name = L"textBox_login";
-			this->textBox_login->Size = System::Drawing::Size(100, 20);
+			this->textBox_login->Size = System::Drawing::Size(169, 30);
 			this->textBox_login->TabIndex = 2;
 			// 
 			// textBox_password
 			// 
-			this->textBox_password->Location = System::Drawing::Point(201, 212);
+			this->textBox_password->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
+			this->textBox_password->Location = System::Drawing::Point(202, 138);
 			this->textBox_password->Name = L"textBox_password";
-			this->textBox_password->Size = System::Drawing::Size(100, 20);
+			this->textBox_password->Size = System::Drawing::Size(169, 30);
 			this->textBox_password->TabIndex = 3;
 			// 
 			// Regiter
 			// 
-			this->Regiter->Location = System::Drawing::Point(87, 320);
+			this->Regiter->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
+			this->Regiter->Location = System::Drawing::Point(90, 236);
 			this->Regiter->Name = L"Regiter";
 			this->Regiter->RightToLeft = System::Windows::Forms::RightToLeft::No;
-			this->Regiter->Size = System::Drawing::Size(188, 38);
+			this->Regiter->Size = System::Drawing::Size(233, 52);
 			this->Regiter->TabIndex = 4;
 			this->Regiter->Text = L"Зарегистрироваться ";
 			this->Regiter->UseVisualStyleBackColor = true;
@@ -111,7 +120,8 @@ namespace TestingProject {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(414, 460);
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->ClientSize = System::Drawing::Size(414, 357);
 			this->Controls->Add(this->Regiter);
 			this->Controls->Add(this->textBox_password);
 			this->Controls->Add(this->textBox_login);
@@ -119,11 +129,13 @@ namespace TestingProject {
 			this->Controls->Add(this->label1);
 			this->Name = L"AdminRegister";
 			this->Text = L"AdminRegister";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &AdminRegister::AdminRegister_FormClosing);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 	private: System::Void Regiter_Click(System::Object^ sender, System::EventArgs^ e);
+		   System::Void AdminRegister_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
 };
 }

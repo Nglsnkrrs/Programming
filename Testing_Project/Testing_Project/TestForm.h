@@ -1,5 +1,5 @@
 #pragma once
-
+#include "FormManager.h"
 namespace TestingProject {
 
 	using namespace std;
@@ -22,7 +22,7 @@ namespace TestingProject {
 		List<String^>^ testQuestions;
 		List<List<String^>^>^ testOptions;
 		List<String^>^ testAnswers;
-		
+
 		int currentQuestionIndex;
 		int correctAnswers = 0;
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
@@ -41,6 +41,13 @@ namespace TestingProject {
 			testOptions = gcnew List<List<String^>^>();
 			testAnswers = gcnew List<String^>();
 			loadTests();
+			answer1->Click += gcnew EventHandler(this, &TestForm::OnAnswerClick);
+			answer2->Click += gcnew EventHandler(this, &TestForm::OnAnswerClick);
+			answer3->Click += gcnew EventHandler(this, &TestForm::OnAnswerClick);
+			answer4->Click += gcnew EventHandler(this, &TestForm::OnAnswerClick);
+			Next_Question->Click += gcnew EventHandler(this, &TestForm::OnNextButtonClick);
+
+			FormManager::ActiveForms->Add(this);
 		}
 	protected:
 		~TestForm()
@@ -105,6 +112,7 @@ namespace TestingProject {
 			this->„Î‡‚Ì‡ˇToolStripMenuItem->Name = L"„Î‡‚Ì‡ˇToolStripMenuItem";
 			this->„Î‡‚Ì‡ˇToolStripMenuItem->Size = System::Drawing::Size(63, 20);
 			this->„Î‡‚Ì‡ˇToolStripMenuItem->Text = L"√Î‡‚Ì‡ˇ";
+			this->„Î‡‚Ì‡ˇToolStripMenuItem->Click += gcnew System::EventHandler(this, &TestForm::„Î‡‚Ì‡ˇToolStripMenuItem_Click);
 			// 
 			// ÏÓÈœÓÙËÎ¸ToolStripMenuItem
 			// 
@@ -115,7 +123,7 @@ namespace TestingProject {
 			// 
 			// Next_Question
 			// 
-			this->Next_Question->Location = System::Drawing::Point(797, 352);
+			this->Next_Question->Location = System::Drawing::Point(809, 371);
 			this->Next_Question->Name = L"Next_Question";
 			this->Next_Question->Size = System::Drawing::Size(189, 43);
 			this->Next_Question->TabIndex = 6;
@@ -124,9 +132,8 @@ namespace TestingProject {
 			// 
 			// answer4
 			// 
-			this->answer4->AutoSize = true;
 			this->answer4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
-			this->answer4->Location = System::Drawing::Point(511, 271);
+			this->answer4->Location = System::Drawing::Point(505, 285);
 			this->answer4->Name = L"answer4";
 			this->answer4->Size = System::Drawing::Size(140, 29);
 			this->answer4->TabIndex = 5;
@@ -136,9 +143,8 @@ namespace TestingProject {
 			// 
 			// answer3
 			// 
-			this->answer3->AutoSize = true;
 			this->answer3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
-			this->answer3->Location = System::Drawing::Point(38, 271);
+			this->answer3->Location = System::Drawing::Point(38, 285);
 			this->answer3->Name = L"answer3";
 			this->answer3->Size = System::Drawing::Size(140, 29);
 			this->answer3->TabIndex = 4;
@@ -148,9 +154,8 @@ namespace TestingProject {
 			// 
 			// answer2
 			// 
-			this->answer2->AutoSize = true;
 			this->answer2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
-			this->answer2->Location = System::Drawing::Point(511, 155);
+			this->answer2->Location = System::Drawing::Point(505, 124);
 			this->answer2->Name = L"answer2";
 			this->answer2->Size = System::Drawing::Size(140, 29);
 			this->answer2->TabIndex = 3;
@@ -160,9 +165,8 @@ namespace TestingProject {
 			// 
 			// answer1
 			// 
-			this->answer1->AutoSize = true;
 			this->answer1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
-			this->answer1->Location = System::Drawing::Point(38, 155);
+			this->answer1->Location = System::Drawing::Point(38, 124);
 			this->answer1->Name = L"answer1";
 			this->answer1->Size = System::Drawing::Size(140, 29);
 			this->answer1->TabIndex = 2;
@@ -173,20 +177,20 @@ namespace TestingProject {
 			// text_question
 			// 
 			this->text_question->AutoSize = true;
-			this->text_question->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 25));
-			this->text_question->Location = System::Drawing::Point(2, 59);
+			this->text_question->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
+			this->text_question->Location = System::Drawing::Point(12, 51);
 			this->text_question->Name = L"text_question";
-			this->text_question->Size = System::Drawing::Size(146, 39);
+			this->text_question->Size = System::Drawing::Size(86, 25);
 			this->text_question->TabIndex = 1;
 			this->text_question->Text = L"question";
 			// 
 			// text_num
 			// 
 			this->text_num->AutoSize = true;
-			this->text_num->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 25));
-			this->text_num->Location = System::Drawing::Point(2, 1);
+			this->text_num->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
+			this->text_num->Location = System::Drawing::Point(12, 13);
 			this->text_num->Name = L"text_num";
-			this->text_num->Size = System::Drawing::Size(83, 39);
+			this->text_num->Size = System::Drawing::Size(51, 25);
 			this->text_num->TabIndex = 0;
 			this->text_num->Text = L"1/10";
 			// 
@@ -222,19 +226,13 @@ namespace TestingProject {
 			this->Controls->Add(this->panel_Testing);
 			this->Name = L"TestForm";
 			this->Text = L"TestForm";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &TestForm::TestForm_FormClosing);
 			this->menuStrip_Main->ResumeLayout(false);
 			this->menuStrip_Main->PerformLayout();
 			this->panel_Testing->ResumeLayout(false);
 			this->panel_Testing->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
-
-			answer1->Click += gcnew EventHandler(this, &TestForm::OnAnswerClick);
-			answer2->Click += gcnew EventHandler(this, &TestForm::OnAnswerClick);
-			answer3->Click += gcnew EventHandler(this, &TestForm::OnAnswerClick);
-			answer4->Click += gcnew EventHandler(this, &TestForm::OnAnswerClick);
-			Next_Question->Click += gcnew EventHandler(this, &TestForm::OnNextButtonClick);
-
 
 		}
 
@@ -248,8 +246,11 @@ namespace TestingProject {
 		void loadTestFromFile(String^ testName);
 		void displayQuestion();
 		void saveTestResults(String^ testName, int grade);
+		System::Void „Î‡‚Ì‡ˇToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+		System::Void TestForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
+	public:
 		void OnAnswerClick(Object^ sender, EventArgs^ e);
 		void OnNextButtonClick(Object^ sender, EventArgs^ e);
-		
+	
 };
 }

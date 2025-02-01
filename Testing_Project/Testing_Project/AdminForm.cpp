@@ -37,3 +37,8 @@ System::Void TestingProject::AdminForm::Admin_Login_Click(System::Object^ sender
     }
 
 }
+
+System::Void TestingProject::AdminForm::AdminForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e)
+{
+    FormManager::CloseAllForms();
+}

@@ -20,6 +20,8 @@ namespace TestingProject {
 			InitializeComponent();
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 		}
+	private: System::Windows::Forms::Label^ label1;
+	public:
 	public:
 		String^ Key = "MySecretKey12345";
 	protected:
@@ -52,30 +54,43 @@ namespace TestingProject {
 		{
 			this->button_DelLogin = (gcnew System::Windows::Forms::Button());
 			this->textBox_DeleteLogin = (gcnew System::Windows::Forms::TextBox());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// button_DelLogin
 			// 
-			this->button_DelLogin->Location = System::Drawing::Point(57, 158);
+			this->button_DelLogin->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
+			this->button_DelLogin->Location = System::Drawing::Point(52, 217);
 			this->button_DelLogin->Name = L"button_DelLogin";
-			this->button_DelLogin->Size = System::Drawing::Size(170, 48);
+			this->button_DelLogin->Size = System::Drawing::Size(252, 48);
 			this->button_DelLogin->TabIndex = 3;
-			this->button_DelLogin->Text = L"button1";
+			this->button_DelLogin->Text = L"Удалить пользователя";
 			this->button_DelLogin->UseVisualStyleBackColor = true;
 			this->button_DelLogin->Click += gcnew System::EventHandler(this, &DeleteUser::button_DelLogin_Click);
 			// 
 			// textBox_DeleteLogin
 			// 
-			this->textBox_DeleteLogin->Location = System::Drawing::Point(71, 55);
+			this->textBox_DeleteLogin->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
+			this->textBox_DeleteLogin->Location = System::Drawing::Point(41, 134);
 			this->textBox_DeleteLogin->Name = L"textBox_DeleteLogin";
-			this->textBox_DeleteLogin->Size = System::Drawing::Size(136, 20);
+			this->textBox_DeleteLogin->Size = System::Drawing::Size(274, 30);
 			this->textBox_DeleteLogin->TabIndex = 2;
+			// 
+			// label1
+			// 
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
+			this->label1->Location = System::Drawing::Point(36, 32);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(279, 59);
+			this->label1->TabIndex = 4;
+			this->label1->Text = L"Введите логин пользователя для удаления";
 			// 
 			// DeleteUser
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 261);
+			this->ClientSize = System::Drawing::Size(344, 305);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button_DelLogin);
 			this->Controls->Add(this->textBox_DeleteLogin);
 			this->Name = L"DeleteUser";

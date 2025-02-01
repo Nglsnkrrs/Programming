@@ -80,7 +80,7 @@ bool Encryping::IsLoginExists(String^ login, String^ filePath)
 
         while ((line = reader->ReadLine()) != nullptr)
         {
-            array<String^>^ userFields = line->Split('/');
+            array<String^>^ userFields = line->Split(';');
             if (userFields->Length > 0 && userFields[0] == encrypt)
             {
                 isLoginTaken = true;
@@ -114,7 +114,7 @@ bool Encryping::IsPasswordExists(String^ Pass, String^ filePath)
 
         while ((line = reader->ReadLine()) != nullptr)
         {
-            array<String^>^ userFields = line->Split('/');
+            array<String^>^ userFields = line->Split(';');
             if (userFields->Length > 0 && userFields[1] == encrypt)
             {
                 isLoginTaken = true;

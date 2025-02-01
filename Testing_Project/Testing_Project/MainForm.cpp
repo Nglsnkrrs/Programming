@@ -43,3 +43,8 @@ System::Void TestingProject::MainForm::Main_Admin_Click(System::Object^ sender, 
 
     this->Hide();
 }
+
+System::Void TestingProject::MainForm::MainForm_FormClosing_1(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e)
+{
+    FormManager::CloseAllForms();
+}

@@ -11,7 +11,7 @@ System::Void TestingProject::DeleteUser::button_DelLogin_Click(System::Object^ s
 	List<String^>^ updatedLines = gcnew List<String^>();
 	for each (String ^ line in fileLines)
 	{
-		array<String^>^ userData = line->Split('/');
+		array<String^>^ userData = line->Split(';');
 		if (userData->Length > 0 && Encryping::Decrypt(userData[0], Key) != DeleteLogin)
 		{
 			updatedLines->Add(line);

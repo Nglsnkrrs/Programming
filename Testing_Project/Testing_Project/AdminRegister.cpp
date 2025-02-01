@@ -13,7 +13,7 @@ System::Void TestingProject::AdminRegister::Regiter_Click(System::Object^ sender
 	encryptedLoginAdmin = Encryping::Encrypt(LoginAdmin, Key);
 	encryptedPasswordAdmin = Encryping::Encrypt(PasswordAdmin, Key);
 
-	String^ adminData = encryptedLoginAdmin + "/" + encryptedPasswordAdmin;
+	String^ adminData = encryptedLoginAdmin + ";" + encryptedPasswordAdmin;
 
 	if (System::IO::File::Exists(filePath))
 	{
@@ -34,4 +34,9 @@ System::Void TestingProject::AdminRegister::Regiter_Click(System::Object^ sender
 	AdminForm^ form4 = gcnew AdminForm();
 	form4->Show();
 	this->Hide();
+}
+
+System::Void TestingProject::AdminRegister::AdminRegister_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e)
+{
+	FormManager::CloseAllForms();
 }

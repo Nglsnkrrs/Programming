@@ -1,4 +1,5 @@
 #pragma once
+#include "FormManager.h"
 
 namespace TestingProject {
 
@@ -19,6 +20,7 @@ namespace TestingProject {
 		{
 			InitializeComponent();
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			FormManager::ActiveForms->Add(this);
 		}
 		
 		
@@ -136,6 +138,7 @@ namespace TestingProject {
 			this->Controls->Add(this->Login_User);
 			this->Name = L"UserForm";
 			this->Text = L"UserForm";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &UserForm::UserForm_FormClosing);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -144,5 +147,6 @@ namespace TestingProject {
 	private: 
 		System::Void Register_User_Click(System::Object^ sender, System::EventArgs^ e);
 		System::Void Login_User_Click(System::Object^ sender, System::EventArgs^ e);
+		System::Void UserForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
 };
 }

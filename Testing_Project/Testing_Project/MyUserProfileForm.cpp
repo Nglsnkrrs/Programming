@@ -11,7 +11,7 @@ System::Void TestingProject::MyUserProfileForm::MyUserProfileForm_Load(System::O
     bool userFound = false;
 
     for each (System::String ^ line in fileLines) {
-        array<System::String^>^ userData = line->Split('/');
+        array<System::String^>^ userData = line->Split(';');
         if (userData->Length != 6) {
             continue; // Пропуск некорректной строки
         }
@@ -49,7 +49,7 @@ void TestingProject::MyUserProfileForm::LoadTestResults(String^ userLogin)
     String^ resultText = "Результаты тестов:\n";
 
     for each (System::String ^ resultLine in results) {
-        array<System::String^>^ resultData = resultLine->Split('/');
+        array<System::String^>^ resultData = resultLine->Split(';');
         if (resultData->Length == 3 && resultData[0] == userLogin) {
             String^ testName = resultData[1];
             String^ marks = resultData[2];

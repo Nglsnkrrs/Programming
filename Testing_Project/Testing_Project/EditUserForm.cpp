@@ -26,7 +26,7 @@ System::Void TestingProject::EditUserForm::button_EditUser_Click(System::Object^
 
 	for each (String ^ line in fileLines)
 	{
-		array<String^>^ userData = line->Split('/');
+		array<String^>^ userData = line->Split(';');
 
 		if (userData->Length > 0)
 		{
@@ -43,7 +43,7 @@ System::Void TestingProject::EditUserForm::button_EditUser_Click(System::Object^
 				String^ encryptedPhone = Encryping::Encrypt(newPhone, Key);
 				String^ encryptedAddress = Encryping::Encrypt(newAddress, Key);
 
-				String^ updatedUserData = encryptedLogin + "/" + encryptedPassword + "/" + encryptedEmail + "/" + encryptedName + "/" + encryptedPhone + "/" + encryptedAddress;
+				String^ updatedUserData = encryptedLogin + ";" + encryptedPassword + ";" + encryptedEmail + ";" + encryptedName + ";" + encryptedPhone + ";" + encryptedAddress;
 
 				updatedLines->Add(updatedUserData);
 			}

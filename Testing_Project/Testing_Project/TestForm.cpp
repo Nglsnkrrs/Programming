@@ -2,6 +2,7 @@
 #include "Encryping.h"
 #include "UserForm.h"
 #include "MyUserProfileForm.h"
+#include "MainForm.h"
 
 System::Void TestingProject::TestForm::ìîéÏðîôèëüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
@@ -145,7 +146,7 @@ void TestingProject::TestForm::saveTestResults(String^ testName, int grade)
 {
 	try
 	{
-		String^ result = Login1 + "/" + testName + "/" + grade.ToString();
+		String^ result = Login1 + ";" + testName + ";" + grade.ToString();
 
 		String^ resultsFilePath = "TestResults.txt";
 
@@ -157,6 +158,18 @@ void TestingProject::TestForm::saveTestResults(String^ testName, int grade)
 	{
 		MessageBox::Show("Îøèáêà ïðè ñîõðàíåíèè ðåçóëüòàòîâ: " + ex->Message);
 	}
+}
+
+System::Void TestingProject::TestForm::ãëàâíàÿToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	MainForm^ MainForm1 = gcnew MainForm();
+	MainForm1->Show();
+	this->Hide();
+}
+
+System::Void TestingProject::TestForm::TestForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e)
+{
+	FormManager::CloseAllForms();
 }
 
 void TestingProject::TestForm::OnAnswerClick(Object^ sender, EventArgs^ e)

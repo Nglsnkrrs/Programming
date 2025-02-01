@@ -41,8 +41,8 @@ System::Void TestingProject::UserRegister::Reg_Click(System::Object^ sender, Sys
     encryptedAddres = Encryping::Encrypt(Addres, Key);
     encryptedPhone = Encryping::Encrypt(Phone, Key);
 
-    String^ userData = encryptedLogin + "/" + encryptedPassword +
-        "/" + encryptedEmail + "/" + encryptedName + "/" + encryptedAddres + "/" + encryptedPhone;
+    String^ userData = encryptedLogin + ";" + encryptedPassword +
+        ";" + encryptedEmail + ";" + encryptedName + ";" + encryptedAddres + ";" + encryptedPhone;
 
     Encryping::WriteEncryptedToFile(userData, filePath);
 
@@ -64,4 +64,9 @@ System::Void TestingProject::UserRegister::Back_Click(System::Object^ sender, Sy
     UserForm^ form5 = gcnew UserForm();
     form5->Show();
     this->Hide();
+}
+
+System::Void TestingProject::UserRegister::UserRegister_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e)
+{
+    FormManager::CloseAllForms();
 }
