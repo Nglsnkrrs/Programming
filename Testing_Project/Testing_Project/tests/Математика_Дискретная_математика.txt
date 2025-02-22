@@ -5,9 +5,17 @@
 10
 Ответ: 2
 
-Что такое граф?
-Структура данных
-Операция над числами
-Строка символов
-Нечто другое
+sdfsfdsf
+sdfsdf
+sdfsdf
+sdfsdf
+sdfsdf
 Ответ: 1
+
+sfdsdfsdf
+dfsdfs
+dfsdfsdf
+fsdfsdf
+sdffs
+Ответ: 2
+
